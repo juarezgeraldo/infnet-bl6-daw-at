@@ -15,56 +15,56 @@ namespace AT.Data.Repositories
 
         public async Task<IEnumerable<Livro>> GetAsync()
         {
-            var books = await _infnet_Bl6_Daw_AtDbContext
+            var Livros = await _infnet_Bl6_Daw_AtDbContext
                 .Livros
                 .Include(b => b.Autores)
                 .ToListAsync();
 
-            return books;
+            return Livros;
         }
 
         public async Task<Livro> GetAsync(int id)
         {
-            var book = _infnet_Bl6_Daw_AtDbContext
+            var Livro = _infnet_Bl6_Daw_AtDbContext
                 .Livros
                 .Where(a => a.Id == id)
                 .Include(b => b.Autores)
                 .FirstOrDefault();
 
-            return book;
+            return Livro;
         }
 
-        public async Task<Livro> CreateAsync(Livro book)
+        public async Task<Livro> CreateAsync(Livro Livro)
         {
-            _infnet_Bl6_Daw_AtDbContext.Livros.Add(book);
+            _infnet_Bl6_Daw_AtDbContext.Livros.Add(Livro);
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
-            return book;
+            return Livro;
         }
 
-        public async Task<Livro> UpdateAsync(Livro book)
+        public async Task<Livro> UpdateAsync(Livro Livro)
         {
-            _infnet_Bl6_Daw_AtDbContext.Entry(book).State = EntityState.Modified;
+            _infnet_Bl6_Daw_AtDbContext.Entry(Livro).State = EntityState.Modified;
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
-            return book;
+            return Livro;
         }
 
-        public async Task<Livro> DeleteAsync(Livro book)
+        public async Task<Livro> DeleteAsync(Livro Livro)
         {
-            _infnet_Bl6_Daw_AtDbContext.Entry(book).State = EntityState.Modified;
+            _infnet_Bl6_Daw_AtDbContext.Entry(Livro).State = EntityState.Modified;
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
-            return book;
+            return Livro;
         }
 
-        public async Task<Livro> AddAutor(Livro book)
+        public async Task<Livro> AddAutor(Livro Livro)
         {
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
-            return book;
+            return Livro;
         }
 
-        public async Task<Livro> RemoveAutor(Livro book)
+        public async Task<Livro> RemoveAutor(Livro Livro)
         {
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
-            return book;
+            return Livro;
         }
     }
 }

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "infnet-bl6-daw-at.API", "in
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infnet-bl6-daw-at.Data", "infnet-bl6-daw-at.Data\infnet-bl6-daw-at.Data.csproj", "{7CF06F14-1F4B-402D-9D7F-25B58F646623}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infnet-bl6-daw-at.MVC", "infnet-bl6-daq-at.MVC\infnet-bl6-daw-at.MVC.csproj", "{1CCB5A9B-237C-43DC-8238-79E10EC8D053}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7CF06F14-1F4B-402D-9D7F-25B58F646623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CF06F14-1F4B-402D-9D7F-25B58F646623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CF06F14-1F4B-402D-9D7F-25B58F646623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CCB5A9B-237C-43DC-8238-79E10EC8D053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCB5A9B-237C-43DC-8238-79E10EC8D053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCB5A9B-237C-43DC-8238-79E10EC8D053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCB5A9B-237C-43DC-8238-79E10EC8D053}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
