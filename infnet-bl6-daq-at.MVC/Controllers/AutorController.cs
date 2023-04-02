@@ -31,7 +31,7 @@ namespace infnet_bl6_daw_at.MVC.Controllers
         }
 
         // GET: AutorController/Create
-        public ActionResult Incluir()
+        public async Task<ActionResult> Incluir()
         {
             return View();
         }

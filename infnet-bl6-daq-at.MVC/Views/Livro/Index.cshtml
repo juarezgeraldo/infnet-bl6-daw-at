@@ -1,0 +1,53 @@
+﻿@model IEnumerable<infnet_bl6_daw_at.MVC.Models.Autores.LivroViewModel>
+
+@{
+    ViewData["Title"] = "Livros";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Incluir novo Livro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Isbn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ano)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isbn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ano)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Editar", new { id=item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id=item.Id }) |
+                    @Html.ActionLink("Exluir", "Exluir", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
