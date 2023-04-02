@@ -1,10 +1,9 @@
-﻿using infnet_bl6_daw_at.Domain.Entities;
-using infnet_bl6_daw_at.Domain.ViewModel;
+﻿using AutoMapper;
+using DTO.Livro;
+using infnet_bl6_daw_at.Domain.Entities;
+using infnet_bl6_daw_at.Domain.Interfaces;
 using infnet_bl6_daw_at.Service;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
-using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,84 +13,58 @@ namespace infnet_bl6_daw_at.API.Controllers
     [ApiController]
     public class LivroController : ControllerBase
     {
-        private readonly infnet_bl6_daw_atDbContext _dbContext;
-        public LivroController(infnet_bl6_daw_atDbContext dbContext)
+        private readonly IMapper _mapper;
+        private readonly ILivroService _livroService;
+        public LivroController(ILivroService livroService, IMapper mapper)
         {
-            _dbContext = dbContext;
+            _mapper = mapper;
+            _livroService = livroService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<LivroViewModel>>> GetLivros()
+        public async Task<ActionResult<IEnumerable<LivroDTO>>> GetAll()
         {
-            return LivroViewModel.GetAll(_dbContext.Livros.ToList()).ToList();
+            return Ok(_mapper.Map<IEnumerable<LivroDTO>>(await _livroService.GetAll()));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<LivroViewModel>> GetLivro(int id)
+        public async Task<ActionResult<LivroDTO>> Get(int id)
         {
-            var livro = await  _dbContext.Livros.FindAsync(id);
-            if (livro == null)
-            {
-                return NotFound();
-            }
-            return LivroViewModel.Get(livro);
+            return Ok(_mapper.Map<LivroDTO>(await _livroService.Get(id)));
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLivro(int id, Livro livro)
-        {
-            if (id != livro.Id)
-            {
-                return BadRequest();
-            }
-            _dbContext.Entry(livro).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            try
-            {
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LivroExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return NoContent();
-        }
-
 
         [HttpPost]
-        public async Task<ActionResult<Livro>> PostLivro(Livro livro)
+        public async Task<ActionResult<Livro>> PostLivro(InsereLivroDTO insereLivroDTO)
         {
-            _dbContext.Livros.Add(livro);
-            await _dbContext.SaveChangesAsync();
-
-            return CreatedAtAction("GetLivro", new { id = livro.Id }, livro);
+            var livro = _mapper.Map<Livro>(insereLivroDTO);
+            return Ok(_mapper.Map<LivroDTO>(await _livroService.Add(livro)));
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult> PutLivro(int id, AtualizaLivroDTO atualizaLivroDTO)
+        {
+            var livro = _mapper.Map<Livro>(atualizaLivroDTO);
+            livro.Id = id;
+            return Ok(await _livroService.Save(livro));
+//            return Ok(_mapper.Map<LivroDTO>(await _livroService.Save(livro)));
+        }
+
+        [HttpPatch("{livroId}/autores/{autorId}")]
+        public async Task<ActionResult<LivroDTO>> AddAutorNoLivro(int livroId, int autorId)
+        {
+            return Ok(_mapper.Map<LivroDTO>(await _livroService.AddAutor(livroId, autorId)));
+        }
+
+        [HttpDelete("{livroId}/autores/{autorId}")]
+        public async Task<ActionResult<LivroDTO>> DeleteAutorDoLivro(int livroId, int autorId)
+        {
+            return Ok(_mapper.Map<LivroDTO>(await _livroService.RemoveAutor(livroId, autorId)));
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLivro(int id)
         {
-            var livro = await _dbContext.Livros.FindAsync(id);
-            if (livro == null)
-            {
-                return NotFound();
-            }
-
-            _dbContext.Livros.Remove(livro);
-            await _dbContext.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-
-        private bool LivroExists(int id)
-        {
-            return _dbContext.Livros.Any(e => e.Id == id);
+            return Ok(_mapper.Map<LivroDTO>(await _livroService.Remove(id)));
         }
 
     }

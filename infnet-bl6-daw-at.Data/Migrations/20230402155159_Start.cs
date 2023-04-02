@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace infnet_bl6_daw_at.Service.Migrations
+namespace infnet_bl6_daw_at.Data.Migrations
 {
     public partial class Start : Migration
     {
@@ -49,7 +49,7 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Autor",
+                name: "Autores",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,11 +61,11 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Autor", x => x.Id);
+                    table.PrimaryKey("PK_Autores", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Livro",
+                name: "Livros",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -76,7 +76,7 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livro", x => x.Id);
+                    table.PrimaryKey("PK_Livros", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -186,25 +186,25 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AutorLivro",
+                name: "LivroAutor",
                 columns: table => new
                 {
-                    AutoresId = table.Column<int>(type: "int", nullable: false),
-                    LivrosId = table.Column<int>(type: "int", nullable: false)
+                    LivroId = table.Column<int>(type: "int", nullable: false),
+                    AutorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AutorLivro", x => new { x.AutoresId, x.LivrosId });
+                    table.PrimaryKey("PK_LivroAutor", x => new { x.LivroId, x.AutorId });
                     table.ForeignKey(
-                        name: "FK_AutorLivro_Autor_AutoresId",
-                        column: x => x.AutoresId,
-                        principalTable: "Autor",
+                        name: "FK_LivroAutor_Autores_AutorId",
+                        column: x => x.AutorId,
+                        principalTable: "Autores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AutorLivro_Livro_LivrosId",
-                        column: x => x.LivrosId,
-                        principalTable: "Livro",
+                        name: "FK_LivroAutor_Livros_LivroId",
+                        column: x => x.LivroId,
+                        principalTable: "Livros",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -249,9 +249,9 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AutorLivro_LivrosId",
-                table: "AutorLivro",
-                column: "LivrosId");
+                name: "IX_LivroAutor_AutorId",
+                table: "LivroAutor",
+                column: "AutorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -272,7 +272,7 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AutorLivro");
+                name: "LivroAutor");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -281,10 +281,10 @@ namespace infnet_bl6_daw_at.Service.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Autor");
+                name: "Autores");
 
             migrationBuilder.DropTable(
-                name: "Livro");
+                name: "Livros");
         }
     }
 }

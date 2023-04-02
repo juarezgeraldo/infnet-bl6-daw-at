@@ -8,7 +8,7 @@ using infnet_bl6_daw_at.Service;
 
 #nullable disable
 
-namespace infnet_bl6_daw_at.Service.Migrations
+namespace infnet_bl6_daw_at.Data.Migrations
 {
     [DbContext(typeof(infnet_bl6_daw_atDbContext))]
     partial class infnet_bl6_daw_atDbContextModelSnapshot : ModelSnapshot
@@ -17,25 +17,10 @@ namespace infnet_bl6_daw_at.Service.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.14")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("AutorLivro", b =>
-                {
-                    b.Property<int>("AutoresId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LivrosId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AutoresId", "LivrosId");
-
-                    b.HasIndex("LivrosId");
-
-                    b.ToTable("AutorLivro");
-                });
 
             modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.Autor", b =>
                 {
@@ -62,7 +47,7 @@ namespace infnet_bl6_daw_at.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Autor", (string)null);
+                    b.ToTable("Autores");
                 });
 
             modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.Livro", b =>
@@ -86,7 +71,22 @@ namespace infnet_bl6_daw_at.Service.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Livro", (string)null);
+                    b.ToTable("Livros");
+                });
+
+            modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.LivroAutor", b =>
+                {
+                    b.Property<int>("LivroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AutorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LivroId", "AutorId");
+
+                    b.HasIndex("AutorId");
+
+                    b.ToTable("LivroAutor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -287,19 +287,23 @@ namespace infnet_bl6_daw_at.Service.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AutorLivro", b =>
+            modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.LivroAutor", b =>
                 {
-                    b.HasOne("infnet_bl6_daw_at.Domain.Entities.Autor", null)
-                        .WithMany()
-                        .HasForeignKey("AutoresId")
+                    b.HasOne("infnet_bl6_daw_at.Domain.Entities.Autor", "Autor")
+                        .WithMany("LivroAutores")
+                        .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("infnet_bl6_daw_at.Domain.Entities.Livro", null)
-                        .WithMany()
-                        .HasForeignKey("LivrosId")
+                    b.HasOne("infnet_bl6_daw_at.Domain.Entities.Livro", "Livro")
+                        .WithMany("LivroAutores")
+                        .HasForeignKey("LivroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Autor");
+
+                    b.Navigation("Livro");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -351,6 +355,16 @@ namespace infnet_bl6_daw_at.Service.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.Autor", b =>
+                {
+                    b.Navigation("LivroAutores");
+                });
+
+            modelBuilder.Entity("infnet_bl6_daw_at.Domain.Entities.Livro", b =>
+                {
+                    b.Navigation("LivroAutores");
                 });
 #pragma warning restore 612, 618
         }

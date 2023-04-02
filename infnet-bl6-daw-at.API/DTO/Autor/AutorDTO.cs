@@ -1,17 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DTO.Livro;
 
-namespace infnet_bl6_daw_at.Domain.Entities
+namespace DTO.Autor
 {
-    public class Autor
+    public class AutorDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string Email { get; set; }
         public DateTime Nascimento { get; set; }
-        public ICollection<Livro> Livros { get; set; }
-        public List<LivroAutor> LivroAutores { get; set; }
-
-
+        public ICollection<AutorLivroDTO> LivroAutores { get; set; }
     }
 }

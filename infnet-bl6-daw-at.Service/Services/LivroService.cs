@@ -1,48 +1,83 @@
-﻿
-
+﻿using AT.Data.Repositories;
 using infnet_bl6_daw_at.Domain.Entities;
 using infnet_bl6_daw_at.Domain.Interfaces;
-using infnet_bl6_daw_at.Domain.ViewModel;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+
 
 namespace infnet_bl6_daw_at.Service.Services
 {
     public class LivroService : ILivroService
     {
-        public readonly infnet_bl6_daw_atDbContext _dbContext;
-        public LivroService(infnet_bl6_daw_atDbContext dbContext)
+        private readonly IAutorService _autorService;
+        private readonly ILivrosRepository _livrosRepository;
+
+        public LivroService(IAutorService autorService, ILivrosRepository livrosRepository)
         {
-            _dbContext = dbContext;
+            _autorService = autorService;
+            _livrosRepository = livrosRepository;
+
         }
 
-        public ICollection<LivroViewModel> GetAll()
+        public async Task<IEnumerable<Livro>> GetAll()
         {
-            var livros = _dbContext.Livros
-                .Include(a => a.Autores)
-                .ToList();
-
-            return LivroViewModel.GetAll(livros);
+            return await _livrosRepository.GetAsync();
         }
 
-        public Livro Add(Livro livro)
+        public async Task<Livro> Get(int id)
         {
-            _dbContext.Add(livro);
-            _dbContext.SaveChanges();
-            return livro;
+            return await _livrosRepository.GetAsync(id);
+        }
+        public async Task<Livro> Add(Livro livro)
+        {
+            var autores = await GetAutoresPeloId(livro);
+            livro.Autores = autores;
+            return await _livrosRepository.CreateAsync(livro);
         }
 
-        public Livro Save(Livro livro)
+        private async Task<List<Autor>> GetAutoresPeloId(Livro livro)
         {
-            _dbContext.Update(livro);
-            _dbContext.SaveChanges();
-            return livro;
-        }
-        public Livro Remove(Livro livro)
-        {
-            _dbContext.Remove(livro);
-            _dbContext.SaveChanges();
-            return livro;
+            var autores = new List<Autor>();
+
+            foreach (var novoAutor in livro.Autores)
+            {
+                var autor = await _autorService.Get(novoAutor.Id);
+                if (autor != null)
+                {
+                    autores.Add(autor);
+                }
+            }
+            return autores;
         }
 
+        public async Task<Livro> Save(Livro livro)
+        {
+            return await _livrosRepository.UpdateAsync(livro);
+        }
+        async Task<Livro> ILivroService.Remove(int id)
+        {
+            var livro = await Get(id);
+            return await _livrosRepository.DeleteAsync(livro);
+        }
+
+        public async Task<Livro> AddAutor(int livroId, int autorId)
+        {
+            var livro = await Get(livroId);
+            var autor = await _autorService.Get(autorId);
+
+            livro.Autores.Add(autor);
+
+            return await _livrosRepository.AddAutor(livro);
+        }
+
+        public async Task<Livro> RemoveAutor(int livroId, int autorId)
+        {
+            var livro = await Get(livroId);
+            var autor = await _autorService.Get(autorId);
+
+            livro.Autores.Remove(autor);
+
+            return await _livrosRepository.RemoveAutor(livro);
+        }
     }
 }

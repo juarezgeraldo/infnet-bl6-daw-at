@@ -7,26 +7,15 @@
     <RootNamespace>infnet_bl6_daw_at.Service</RootNamespace>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.4.4" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Migrations\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <ProjectReference Include="..\infnet-bl6-daw-at.Data\infnet-bl6-daw-at.Data.csproj" />
 	  <ProjectReference Include="..\infnet-bl6-daw-at.Domain\infnet-bl6-daw-at.Domain.csproj" />
 	</ItemGroup>
 
