@@ -50,7 +50,7 @@ namespace AT.Data.Repositories
 
         public async Task<Livro> DeleteAsync(Livro Livro)
         {
-            _infnet_Bl6_Daw_AtDbContext.Entry(Livro).State = EntityState.Modified;
+            _infnet_Bl6_Daw_AtDbContext.Livros.Remove(Livro);
             await _infnet_Bl6_Daw_AtDbContext.SaveChangesAsync();
             return Livro;
         }

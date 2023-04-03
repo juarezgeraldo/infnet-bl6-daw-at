@@ -1,0 +1,75 @@
+﻿@model infnet_bl6_daw_at.MVC.Models.Livros.ExcluiAutorViewModel
+
+@{
+    ViewData["Title"] = "Exclui Autor";
+}
+
+<h1>Excluir Autor</h1>
+
+<h3>Você tem certeza de que quer excluir o Autor deste Livro?</h3>
+<div>
+    <h1>Livro</h1>
+
+    <div>
+        <h4>Livro</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Title
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Livro.Titulo
+            </dd>
+            <dt class = "col-sm-2">
+                ISBN
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Livro.Isbn
+            </dd>
+            <dt class = "col-sm-2">
+                Year
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Livro.Ano
+            </dd>
+        </dl>
+    </div>
+
+    <div>
+        <h4>Autor</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                FirstName
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Autor.Nome
+            </dd>
+            <dt class = "col-sm-2">
+                Last Name
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Autor.Sobrenome
+            </dd>
+            <dt class = "col-sm-2">
+                Email
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Autor.Email
+            </dd>
+            <dt class = "col-sm-2">
+                Birth Date
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewBag.Autor.Nascimento
+            </dd>
+        </dl>
+    </div>
+    
+    <form asp-action="ExcluirAutor">
+        @Html.HiddenFor(m => m.AutorId)
+        @Html.HiddenFor(m => m.LivroId)
+        <input type="submit" value="Exclui" class="btn btn-danger"/> |
+        <a asp-action="Edit">Voltar a lista</a>
+    </form>
+</div>

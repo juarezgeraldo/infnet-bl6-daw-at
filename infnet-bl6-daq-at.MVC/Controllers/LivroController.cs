@@ -76,7 +76,7 @@ namespace infnet_bl6_daw_at.MVC.Controllers
             var outroAutores = await _autorService.GetAll();
             var autores = livro.Autores;
 
-            ViewBag.Autores = autores;
+            ViewBag.autores = autores;
             ViewBag.outrosAutores = outroAutores.Except(autores);
 
             return View(_mapper.Map<AtualizaLivroViewModel>(livro));
@@ -127,21 +127,21 @@ namespace infnet_bl6_daw_at.MVC.Controllers
             var livro = await _livroService.Get(livroId);
             var autor = await _autorService.Get(autorId);
 
-            var removeAuthor = new ExcluiAutorViewModel()
+            var excluiAutor = new ExcluiAutorViewModel()
             {
                 AutorId = autor.Id,
                 LivroId = livro.Id
             };
 
-            ViewBag.Author = _mapper.Map<AutorViewModel>(autor);
-            ViewBag.Book = _mapper.Map<LivroViewModel>(livro);
+            ViewBag.Autor = _mapper.Map<AutorViewModel>(autor);
+            ViewBag.Livro = _mapper.Map<LivroViewModel>(livro);
 
-            return View(removeAuthor);
+            return View(excluiAutor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveAuthor(ExcluiAutorViewModel excluiAutor)
+        public async Task<ActionResult> ExcluirAutor(ExcluiAutorViewModel excluiAutor)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace infnet_bl6_daw_at.MVC.Controllers
             }
         }
 
-        public async Task<ActionResult> AdicionaAutor(int livroId, int autorId)
+        public async Task<ActionResult> IncluirAutor(int livroId, int autorId)
         {
             var livro = await _livroService.Get(livroId);
             var autor = await _autorService.Get(autorId);
@@ -174,7 +174,7 @@ namespace infnet_bl6_daw_at.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AdicionaAutor(IncluiAutorViewModel incluiAutor)
+        public async Task<ActionResult> IncluirAutor(IncluiAutorViewModel incluiAutor)
         {
             try
             {

@@ -35,7 +35,6 @@ namespace infnet_bl6_daw_at.Service.Services
         async Task<Autor> IAutorService.Remove(int id)
         {
             var autor = await Get(id);
-
             return await _autoresRepository.DeleteAsync(autor);
         }
 

@@ -36,6 +36,54 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Sobrenome
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.autores)
+                {
+                    <tr>
+                        <td>
+                            @item.Nome
+                        </td>
+                        <td>
+                            @item.Sobrenome
+                        </td>
+                        <td>
+                            <form asp-action="ExcluirAutor">
+                                @Html.ActionLink("Excluir Autor", "ExcluirAutor", new { livroId = Model.Id, autorId = item.Id })
+                            </form>
+                        </td>
+                    </tr>
+                }
+                @foreach (var item in ViewBag.outrosAutores)
+                {
+                    <tr>
+                        <td>
+                            @item.Nome
+                        </td>
+                        <td>
+                            @item.Sobrenome
+                        </td>
+                        <td>
+                            <form asp-action="IncluirAutor">
+                                @Html.ActionLink("Incluir Autor", "IncluirAutor", new { livroId = Model.Id, autorId = item.Id })
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
