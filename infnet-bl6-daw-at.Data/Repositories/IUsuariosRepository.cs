@@ -1,13 +1,7 @@
-﻿using AT.Models;
-using infnet_bl6_daw_at.Domain.Entities;
+﻿using infnet_bl6_daw_at.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AT.Data.Repositories
+namespace infnet_bl6_daw_at.Data.Repositories
 {
     public interface IUsuariosRepository
     {

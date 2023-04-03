@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace infnet_bl6_daw_at.Domain.Entities
+﻿namespace infnet_bl6_daw_at.Domain.Entities
 {
     public class Autor
     {

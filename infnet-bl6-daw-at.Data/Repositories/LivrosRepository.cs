@@ -2,7 +2,7 @@
 using infnet_bl6_daw_at.Service;
 using Microsoft.EntityFrameworkCore;
 
-namespace AT.Data.Repositories
+namespace infnet_bl6_daw_at.Data.Repositories
 {
     public class LivrosRepository : ILivrosRepository
     {

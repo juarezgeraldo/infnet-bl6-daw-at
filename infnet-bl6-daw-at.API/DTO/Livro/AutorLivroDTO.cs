@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DTO.Livro
+﻿namespace infnet_bl6_daw_at.API.DTO.Livro
 {
     public class AutorLivroDTO
     {

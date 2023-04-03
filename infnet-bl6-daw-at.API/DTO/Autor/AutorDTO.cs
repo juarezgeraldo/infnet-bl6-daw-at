@@ -1,6 +1,6 @@
-﻿using DTO.Livro;
+﻿using infnet_bl6_daw_at.API.DTO.Livro;
 
-namespace DTO.Autor
+namespace infnet_bl6_daw_at.API.DTO.Autor
 {
     public class AutorDTO
     {

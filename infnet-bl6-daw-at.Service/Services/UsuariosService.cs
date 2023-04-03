@@ -1,9 +1,6 @@
-﻿using infnet_bl6_daw_at.Domain.Entities;
-using infnet_bl6_daw_at.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using infnet_bl6_daw_at.Data.Repositories;
+using infnet_bl6_daw_at.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using AT.Models;
-using AT.Data.Repositories;
 
 namespace infnet_bl6_daw_at.Domain.Interfaces
 {

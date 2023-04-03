@@ -1,6 +1,6 @@
 ﻿using infnet_bl6_daw_at.Domain.Entities;
 
-namespace AT.Data.Repositories
+namespace infnet_bl6_daw_at.Data.Repositories
 {
     public interface ILivrosRepository
     {

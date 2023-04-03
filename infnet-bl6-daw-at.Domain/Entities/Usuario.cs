@@ -7,9 +7,9 @@ namespace infnet_bl6_daw_at.Domain.Entities
     {
         [
         Required]
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string Password { get; set; }
+        public string LastName { get; set; }
         [Required]
         public string Email { get; set; }
     }

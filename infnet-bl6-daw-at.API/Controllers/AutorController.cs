@@ -1,9 +1,8 @@
 ﻿using infnet_bl6_daw_at.Domain.Entities;
-using infnet_bl6_daw_at.Service;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using infnet_bl6_daw_at.Domain.Interfaces;
-using DTO.Autor;
+using infnet_bl6_daw_at.API.DTO.Autor;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-
-namespace AT.Models
+﻿namespace infnet_bl6_daw_at.Domain.Entities
 {
     public class UsuarioLogin
     {

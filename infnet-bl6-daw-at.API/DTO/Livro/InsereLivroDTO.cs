@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DTO.Autor;
+﻿using infnet_bl6_daw_at.API.DTO.Autor;
 
-namespace DTO.Livro
+namespace infnet_bl6_daw_at.API.DTO.Livro
 {
     public class InsereLivroDTO
     {

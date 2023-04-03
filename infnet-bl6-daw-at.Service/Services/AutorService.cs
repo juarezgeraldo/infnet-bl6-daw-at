@@ -1,7 +1,6 @@
-﻿using AT.Data.Repositories;
+﻿using infnet_bl6_daw_at.Data.Repositories;
 using infnet_bl6_daw_at.Domain.Entities;
 using infnet_bl6_daw_at.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace infnet_bl6_daw_at.Service.Services
 {

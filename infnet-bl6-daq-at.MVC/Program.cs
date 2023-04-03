@@ -11,7 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RedeSocial.API.Configuration;
 using System.Text;
-using AT.Data.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using infnet_bl6_daw_at.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,48 +54,14 @@ builder.Services.AddScoped<IUsuariosRepository, UsuariosRepository>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-
-// configure strongly typed settings objects
-//var jwtSection = builder.Configuration.GetSection("JwtBearerTokenSettings");
-//builder.Services.Configure<JwtBearerTokenSettings>(jwtSection);
-//var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
-//var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//})
-//.AddJwtBearer(options =>
-//{
-//    options.RequireHttpsMetadata = false;
-//    options.SaveToken = true;
-//    options.TokenValidationParameters = new TokenValidationParameters()
-//    {
-//        ValidateIssuer = true,
-//        ValidIssuer = jwtBearerTokenSettings.Issuer,
-//        ValidateAudience = true,
-//        ValidAudience = jwtBearerTokenSettings.Audience,
-//        ValidateIssuerSigningKey = true,
-//        IssuerSigningKey = new SymmetricSecurityKey(key),
-//        ValidateLifetime = true,
-//        ClockSkew = TimeSpan.Zero
-//    };
-//});
-
-
-//builder.Services.AddIdentity<Usuario, IdentityRole>(o =>
-//{
-//    o.Password.RequireDigit = false;
-//    o.Password.RequireLowercase = false;
-//    o.Password.RequireNonAlphanumeric = false;
-//    o.Password.RequireUppercase = false;
-//    o.User.RequireUniqueEmail = false;
-//})
-//    .AddEntityFrameworkStores<infnet_bl6_daw_atDbContext>()
-//    .AddDefaultTokenProviders();
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/Forbidden/";
+        options.LoginPath = "/account/login";
+    });
 
 var app = builder.Build();
 

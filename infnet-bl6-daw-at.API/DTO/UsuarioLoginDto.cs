@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AT.API.DTOs.Users
+namespace infnet_bl6_daw_at.API.DTO
 {
     public class UsuarioLoginDto
     {

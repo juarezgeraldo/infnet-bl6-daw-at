@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DTO.Livro;
+using infnet_bl6_daw_at.API.DTO.Livro;
 using infnet_bl6_daw_at.Domain.Entities;
 using infnet_bl6_daw_at.Domain.Interfaces;
 using infnet_bl6_daw_at.Service;

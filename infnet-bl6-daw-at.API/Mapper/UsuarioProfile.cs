@@ -1,9 +1,8 @@
-﻿using AT.API.DTOs.Users;
-using AT.Models;
-using AutoMapper;
+﻿using AutoMapper;
+using infnet_bl6_daw_at.API.DTO;
 using infnet_bl6_daw_at.Domain.Entities;
 
-namespace AT.API.Mapper
+namespace infnet_bl6_daw_at.API.Mapper
 {
     public class UsuarioProfile : Profile
     {

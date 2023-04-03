@@ -1,5 +1,4 @@
-﻿using AT.Models;
-using infnet_bl6_daw_at.Domain.Entities;
+﻿using infnet_bl6_daw_at.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace infnet_bl6_daw_at.Domain.Interfaces

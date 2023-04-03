@@ -1,7 +1,6 @@
 ﻿using infnet_bl6_daw_at.Domain.Entities;
 using AutoMapper;
-using DTO.Autor;
-using DTO.Livro;
+using infnet_bl6_daw_at.API.DTO.Livro;
 
 namespace infnet_bl6_daw_at.API.Mapper
 {

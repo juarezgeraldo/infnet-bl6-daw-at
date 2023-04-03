@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace infnet_bl6_daw_at.MVC.Models.Autores
+﻿namespace infnet_bl6_daw_at.MVC.Models.Conta
 {
     public class UsuarioLoginViewModel
     {
