@@ -3,11 +3,14 @@ using infnet_bl6_daw_at.Domain.Entities;
 using infnet_bl6_daw_at.Domain.Interfaces;
 using infnet_bl6_daw_at.MVC.Models.Autores;
 using infnet_bl6_daw_at.MVC.Models.Livros;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace infnet_bl6_daw_at.MVC.Controllers
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class LivroController : Controller
     {
         private readonly IMapper _mapper;
@@ -35,6 +38,7 @@ namespace infnet_bl6_daw_at.MVC.Controllers
             return View(_mapper.Map<LivroViewModel>(livro));
         }
 
+        [Authorize]
         // GET: livroController/Create
         public async Task<ActionResult> Incluir()
         {

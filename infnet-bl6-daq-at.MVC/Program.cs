@@ -34,7 +34,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("dbEditora")));
 //builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 //options.SignIn.RequireConfirmedAccount = true)
 //.AddEntityFrameworkStores<infnet_bl6_daw_atDbContext>();
-builder.Services.AddIdentity<Usuario, IdentityRole>(o =>
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(o =>
 {
     o.Password.RequireDigit = false;
     o.Password.RequireLowercase = false;
@@ -48,8 +48,6 @@ builder.Services.AddScoped<IAutorService, AutorService>();
 builder.Services.AddScoped<ILivroService, LivroService>();
 builder.Services.AddScoped<IAutoresRepository, AutoresRepository>();
 builder.Services.AddScoped<ILivrosRepository, LivrosRepository>();
-builder.Services.AddScoped<IUsuariosService, UsuariosService>();
-builder.Services.AddScoped<IUsuariosRepository, UsuariosRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -60,7 +58,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
-        options.LoginPath = "/account/login";
+        options.LoginPath = "/Usuarios/Login";
     });
 
 var app = builder.Build();
@@ -78,10 +76,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Livro}/{action=Index}");
 
 app.Run();
