@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace infnet_bl6_daw_at.Service
 {
-    public class infnet_bl6_daw_atDbContext : IdentityDbContext<IdentityUser>
+    public class infnet_bl6_daw_atDbContext : IdentityDbContext<ApplicationUser>
     {
         public infnet_bl6_daw_atDbContext(DbContextOptions<infnet_bl6_daw_atDbContext> options) : base(options)
         {

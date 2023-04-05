@@ -2,7 +2,7 @@
 {
     public class CredencialLogin
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string NomeUsuario { get; set; }
+        public string SenhaUsuario { get; set; }
     }
 }

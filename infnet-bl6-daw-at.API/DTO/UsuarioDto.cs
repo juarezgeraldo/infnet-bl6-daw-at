@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace infnet_bl6_daw_at.Domain.Entities
+namespace infnet_bl6_daw_at.API.DTO
 {
-    public class Usuario
+    public class UsuarioDto
     {
         [Required]
         public string NomeUsuario { get; set; }
